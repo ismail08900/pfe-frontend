@@ -241,7 +241,8 @@ export default function Planning() {
       }
     } catch (error) {
       console.error("Erreur IA planning :", error);
-      toast.error("Erreur lors de la génération du planning par l'IA.");
+      const backendError = error.response?.data?.error || error.response?.data?.message || error.message;
+      toast.error("Erreur : " + backendError);
     } finally {
       setLoadingAI(false);
     }
